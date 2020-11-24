@@ -25,6 +25,7 @@
           <input type="text" id="background-color" value="e8e8e8" />
         </label>
       </li>
+      <!-- <input type="range" min="1" max="100" value="50" class="slider" id="myRange"> -->
       <li>
         <label
           >Color #2:
@@ -43,7 +44,7 @@
       <input id="shapes-amount" value="3" type="number" max="100" min="1" />
     </label>
     <button onclick="generate()">Generate new</button>
-    <button onclick="toImage()">Save as Image</button>
+    <button disabled onclick="toImage()">Save as Image</button>
     <img src="" alt="" id="theimage" />
     <canvas width="1920" height="1080" id="canvas"></canvas>
     <!-- <canvas width="1280" height="720" id="canvas"></canvas> -->

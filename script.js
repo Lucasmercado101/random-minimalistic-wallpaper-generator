@@ -64,19 +64,47 @@ function drawRotatedRect(x, y, width, height, degrees) {
 }
 // setInterval(() => generate(), 1000);
 
-var link = document.getElementById("link");
-link.setAttribute("download", "MintyPaper.png");
-link.setAttribute(
-  "href",
-  canvas.toDataURL("image/png").replace("image/png", "image/octet-stream")
-);
-link.click();
-
 function toImage() {
   var canvas = document.getElementById("canvas");
   document.getElementById("theimage").src = canvas.toDataURL();
   // Canvas2Image.saveAsImage(canvas);
-  // Canvas2Image.saveAsImage(canvas, width, height, type)
+  // Canvas2Image.saveAsBMP(canvas);
+
+  // Canvas2Image.saveAsImage(canvas, 100, 250, "jpeg");
+}
+
+function isHexColorValid(color) {
+  return /^#(?:[0-9a-fA-F]{3}){1,2}$/.test(color);
+}
+
+function randexec() {
+  // https://stackoverflow.com/a/3983830
+  var ar = [];
+  var i,
+    sum = 0;
+
+  // that following initialization loop could be done only once above that
+  // randexec() function, we let it here for clarity
+
+  for (
+    i = 0;
+    i < probs.length - 1;
+    i++ // notice the '-1'
+  ) {
+    sum += probs[i] / 100.0;
+    ar[i] = sum;
+  }
+
+  // Then we get a random number and finds where it sits inside the probabilities
+  // defined earlier
+
+  var r = Math.random(); // returns [0,1]
+
+  for (i = 0; i < ar.length && r >= ar[i]; i++);
+
+  // Finally execute the function and return its result
+
+  return colors[i];
 }
 
 /*
