@@ -1,9 +1,9 @@
 // Palette: https://coolors.co/e63946-f1faee-a8dadc-457b9d-1d3557
 
-$prim: #e63946
+//$prim: #e63946
 $sec: white
-$sec-dark: #a8dadc
-$ter: #457b9d
+//$sec-dark: #a8dadc
+//$ter: #457b9d
 
 html, body
     width: 100%
@@ -11,15 +11,38 @@ html, body
     margin: 0
     padding: 0
 
-// body
-//     padding: 10px
-
 p, li, label
     color: $sec
 
+label p
+    display: inline-block
+
 canvas
     outline: thin solid $sec
-    width: 90%
+    width: 100%
+    margin-top: 25px
 
 html
     background-color: #1d3557
+
+.wrapper
+    padding: 25px
+
+.color-demo
+    display: inline-block
+    height: 30px
+    width: 30px
+    margin: 0 10px
+    outline: thin solid $sec
+
+li
+    display: flex
+    align-items: center
+
+#color-demo-
+    &0
+        background: #e8e8e8
+    &1
+        background: #f05454
+    &2
+        background: #30475e

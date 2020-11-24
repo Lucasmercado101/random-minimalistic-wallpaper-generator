@@ -9,11 +9,49 @@ p, li, label {
   color: white;
 }
 
+label p {
+  display: inline-block;
+}
+
 canvas {
   outline: thin solid white;
-  width: 90%;
+  width: 100%;
+  margin-top: 25px;
 }
 
 html {
   background-color: #1d3557;
+}
+
+.wrapper {
+  padding: 25px;
+}
+
+.color-demo {
+  display: inline-block;
+  height: 30px;
+  width: 30px;
+  margin: 0 10px;
+  outline: thin solid white;
+}
+
+li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#color-demo-0 {
+  background: #e8e8e8;
+}
+
+#color-demo-1 {
+  background: #f05454;
+}
+
+#color-demo-2 {
+  background: #30475e;
 }
