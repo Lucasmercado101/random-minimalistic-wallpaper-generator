@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Static Template</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/canvas2image@1.0.5/canvas2image.min.js"></script>
+  </head>
+  <body>
+    <label
+      >Background:
+      <input
+        onchange="changeBGR()"
+        type="text"
+        id="background-color"
+        value="222831"
+      />
+    </label>
+    <ul>
+      <li>
+        <label
+          >Color #1:
+          <input type="text" id="background-color" value="e8e8e8" />
+        </label>
+      </li>
+      <li>
+        <label
+          >Color #2:
+          <input type="text" id="background-color" value="f05454" />
+        </label>
+      </li>
+      <li>
+        <label
+          >Color #3:
+          <input type="text" id="background-color" value="30475e" />
+        </label>
+      </li>
+    </ul>
+    <label>
+      # of Shapes
+      <input id="shapes-amount" value="3" type="number" max="100" min="1" />
+    </label>
+    <button onclick="generate()">Generate new</button>
+    <button onclick="toImage()">Save as Image</button>
+    <img src="" alt="" id="theimage" />
+    <canvas width="1920" height="1080" id="canvas"></canvas>
+    <!-- <canvas width="1280" height="720" id="canvas"></canvas> -->
+    <script src="./script.js"></script>
+  </body>
+</html>
