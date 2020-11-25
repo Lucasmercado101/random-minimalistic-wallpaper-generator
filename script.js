@@ -68,12 +68,9 @@ function drawRotatedRect(x, y, width, height, degrees) {
 // setInterval(() => generate(), 1000);
 
 function toImage() {
-  var canvas = document.getElementById("canvas");
-  document.getElementById("theimage").src = canvas.toDataURL();
-  // Canvas2Image.saveAsImage(canvas);
-  // Canvas2Image.saveAsBMP(canvas);
-
-  // Canvas2Image.saveAsImage(canvas, 100, 250, "jpeg");
+  $("#the-image").attr("src", canvas.toDataURL());
+  $("#clear-image").attr("disabled", false);
+  $("#save-inst").css("display", "block");
 }
 
 function randexec(arr, chances) {
@@ -97,11 +94,18 @@ $(function () {
       $(this).val(100);
     }
   });
+
+  $("#clear-image").click(function () {
+    $(this).attr("disabled", true);
+    $("#save-inst").css("display", "none");
+    $("#the-image").attr("src", "");
+  });
+
   // Colors
   $(".color-input").on("input", function () {
     let indexItem = $(this).attr("data-color");
     let colorValue = "#" + $(this).val();
-    if (isHexColorValid) {
+    if (isHexColorValid(colorValue)) {
       $(`#color-demo-${indexItem}`).css("background-color", colorValue);
       palette[indexItem] = colorValue;
     }
@@ -113,11 +117,19 @@ $(function () {
     chances[indexItem] = value;
     $(`#color-chance-label-${indexItem} p`).text(value + "%");
   });
+
+  $("#bg-color-input").on("input", function () {
+    let value = $(this).val();
+    let background = "#" + value;
+    if (isHexColorValid(background)) {
+      bgr = background;
+      $("#color-demo-bg").css("background-color", bgr);
+    }
+  });
 });
 
 //TODO: change the resolution of the canvas, so different wallpaper resolution
 // - display text below save button "the bigger the resolution the longer this takes" and "right click and save to image" until i find a way to save canvas to image format directly
-// - add preview for background
 // - different shapes like circles or something
 
 /*

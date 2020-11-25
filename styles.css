@@ -14,9 +14,12 @@ label p {
 }
 
 canvas {
+  display: block;
+  margin: auto;
   outline: thin solid white;
   width: 100%;
   margin-top: 25px;
+  max-width: 1000px;
 }
 
 html {
@@ -54,4 +57,15 @@ li {
 
 #color-demo-2 {
   background: #30475e;
+}
+
+#the-image {
+  display: block;
+  margin: auto;
+  width: 100%;
+  max-width: 1000px;
+}
+
+#save-inst {
+  display: none;
 }

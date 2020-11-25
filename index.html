@@ -6,14 +6,20 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Static Template</title>
     <link rel="stylesheet" href="./styles.css" />
-    <script src="https://cdn.jsdelivr.net/npm/canvas2image@1.0.5/canvas2image.min.js"></script>
     <script src="./vendors/jquery.js"></script>
   </head>
   <body>
     <div class="wrapper">
       <label
         >Background:
-        <input onchange="changeBGR()" type="text" value="222831" />
+        <input
+          id="bg-color-input"
+          size="6"
+          maxlength="6"
+          type="text"
+          value="222831"
+        />
+        <div id="color-demo-bg" class="color-demo"></div>
       </label>
       <ul>
         <li>Colors:</li>
@@ -110,7 +116,9 @@
       </label>
       <button onclick="generate()">Generate new</button>
       <button onclick="toImage()">Save as Image</button>
-      <img src="" alt="" id="theimage" />
+      <button id="clear-image" disabled>Clear Image</button>
+      <p id="save-inst">Right click --> "Save As Image"</p>
+      <img src="" alt="" id="the-image" />
       <canvas width="1920" height="1080" id="canvas"></canvas>
       <!-- <canvas width="1280" height="720" id="canvas"></canvas> -->
     </div>
