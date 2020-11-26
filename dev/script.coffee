@@ -1,14 +1,13 @@
+import { drawRectangleRandomly, drawCircleRandomly } from "./shapes.js";
 canvasDOM = document.getElementById("canvas") 
 ctx = canvasDOM.getContext("2d") 
 canvas = ctx.canvas 
-
-{ width: cWidth, height: cHeight } = canvas 
+shape = "rectangles"
 
 bgr = "#222831" 
 palette = ["#e8e8e8", "#f05454", "#30475e"] 
 chances = [100, 100, 100] 
 
-getRandomSize = (num) -> Math.max(num / 10, (Math.random() * num) / 2)
 
 changeBGR = () -> 
   bgr = "#" + document.getElementById("background-color").value 
@@ -25,34 +24,6 @@ randexec = (chances) ->
   ar.forEach((el, i) => el >= r and result.push(palette[i])) 
   return result 
 
-drawRotatedRect = (x, y, width, height, degrees) ->
-  # first save the untranslated/unrotated context
-  ctx.save() 
-
-  ctx.beginPath() 
-  # move the rotation point to the center of the rect
-  ctx.translate(x + width / 2, y + height / 2) 
-  # rotate the rect
-  ctx.rotate((degrees * Math.PI) / 180) 
-
-  # draw the rect on the transformed context
-  # Note: after transforming [0,0] is visually [x,y]
-  #       so the rect needs to be offset accordingly when drawn
-  ctx.fillRect(-width / 2, -height / 2, width, height) 
-
-  # restore the context to its untranslated/unrotated state
-  ctx.restore() 
-
-  
-drawRectangleRandomly = (color) -> 
-  ranHeight = getRandomSize(cWidth) 
-  ranWidth = getRandomSize(cWidth) 
-  ranY = Math.random() * cHeight - ranHeight / 2 
-  ranX = Math.random() * cWidth - ranWidth / 2 
-  ranRotation = ~~(Math.random() * 360) 
-  ctx.fillStyle = color 
-  drawRotatedRect(ranX, ranY, ranHeight, ranWidth, ranRotation) 
-
 generate = () -> 
   colors = randexec(chances)
 
@@ -62,7 +33,19 @@ generate = () ->
 
   times = +document.getElementById("shapes-amount").value 
   `for (let i = 0; i < times; i++) {
-    drawRectangleRandomly(colors[~~(Math.random() * colors.length)]);
+    let color = colors[~~(Math.random() * colors.length)];
+    console.log(shape)
+    switch (shape){
+      case "rectangles":
+        drawRectangleRandomly(color);
+        break
+      case "circles":
+        drawCircleRandomly(color);
+        break
+      default:
+        throw Error();
+    }
+        
   }`
   return
 
@@ -74,11 +57,6 @@ window.addEventListener("keypress", (ev) ->
 
 # setInterval(() => generate(), 1000) 
 
-
-# Based on https://stackoverflow.com/a/3983830
-
-
-
 $(() ->
   $("#shapes-amount").on("input", () -> 
     if (+$(this).val() > 100) then $(this).val(100)
@@ -89,6 +67,10 @@ $(() ->
     $("#save-inst").css("display", "none")
     $("#the-image").attr("src", "")
   ) 
+
+  $('#shape-type').on('change', () -> 
+    shape = $("#shape-type option:selected").text().toLowerCase()
+);
 
   # Colors
   $(".color-input").on("input", () -> 
