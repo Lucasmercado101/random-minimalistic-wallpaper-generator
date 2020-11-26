@@ -1,11 +1,12 @@
 {
   "name": "random-minimalistic-wallpaper-generator",
   "version": "1.0.0",
-  "description": "",
+  "description": "Created with CodeSandbox",
   "main": "index.html",
   "scripts": {
     "start": "serve",
-    "build": "echo This is a static template, there is no bundler or bundling involved!"
+    "build": "echo This is a static template, there is no bundler or bundling involved!",
+    "dev": " coffee -o . -cw ."
   },
   "repository": {
     "type": "git",
@@ -20,5 +21,8 @@
   "homepage": "https://github.com/codesandbox-app/static-template#readme",
   "devDependencies": {
     "serve": "^11.2.0"
+  },
+  "dependencies": {
+    "coffeescript": "^2.5.1"
   }
 }
