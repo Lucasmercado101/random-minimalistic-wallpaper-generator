@@ -3,13 +3,13 @@ canvasDOM = document.getElementById("canvas")
 ctx = canvasDOM.getContext("2d") 
 canvas = ctx.canvas 
 
-{ width: cWidth, height: cHeight } = canvas 
 
-getRandomSize = (num) -> Math.max(num / 10, (Math.random() * num) / 2)
+getRandomSize = (num) -> Math.max(num / 20, (Math.random() * num) / 2)
 
 export drawRectangleRandomly = (color) -> 
-  ranHeight = getRandomSize(cWidth) 
-  ranWidth = getRandomSize(cWidth) 
+  { width: cWidth, height: cHeight } = canvas 
+  ranHeight = getRandomSize(Math.max(cWidth, cHeight)) 
+  ranWidth = getRandomSize(Math.max(cWidth, cHeight)) 
   ranY = Math.random() * cHeight - ranHeight / 2 
   ranX = Math.random() * cWidth - ranWidth / 2 
   ranRotation = ~~(Math.random() * 360) 
@@ -36,8 +36,9 @@ drawRotatedRect = (x, y, width, height, degrees) ->
   ctx.restore() 
 
 export drawCircleRandomly = (color) ->
-  ranHeight = getRandomSize(cWidth) 
-  ranWidth = getRandomSize(cWidth) 
+  { width: cWidth, height: cHeight } = canvas 
+  ranHeight = getRandomSize(Math.max(cWidth, cHeight)) 
+  ranWidth = getRandomSize(Math.max(cWidth, cHeight)) 
   ranY = Math.random() * cHeight - ranHeight / 2
   ranX = Math.random() * cWidth - ranWidth / 2 
   ranRotation = ~~(Math.random() * 360) 

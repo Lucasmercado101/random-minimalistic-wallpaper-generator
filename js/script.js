@@ -49,7 +49,6 @@ generate = function() {
   times = +document.getElementById("shapes-amount").value;
   for (let i = 0; i < times; i++) {
     let color = colors[~~(Math.random() * colors.length)];
-    console.log(shape)
     switch (shape){
       case "rectangles":
         drawRectangleRandomly(color);
@@ -117,13 +116,20 @@ $(function() {
     $("#clear-image").attr("disabled", false);
     return $("#save-inst").css("display", "block");
   });
-  return $("#generate-new").click(generate);
+  $("#generate-new").click(generate);
+  $("#canvas-height").on("input", function() {
+    return $("#canvas").attr("height", $(this).val());
+  });
+  return $("#canvas-width").on("input", function() {
+    return $("#canvas").attr("width", $(this).val());
+  });
 });
 
 
 // TODO: change the resolution of the canvas, so different wallpaper resolution
 //  - display text below save button "the bigger the resolution the longer this takes" and "right click and save to image" until i find a way to save canvas to image format directly
-//  - different shapes like circles or something
+//  - change the variation in size
+//  - Fit the whole canvas without overflow
 /*
 #e8e8e8
 #f05454

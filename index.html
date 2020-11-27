@@ -103,6 +103,12 @@
           </label>
         </li>
       </ul>
+      <div>
+        <p style="display: inline-block">Resolution:</p>
+        <input size="5" id="canvas-width" type="text" value="1920" />
+        <p style="display: inline-block">x</p>
+        <input size="5" id="canvas-height" type="text" value="1080" />
+      </div>
       <select name="shape-type" id="shape-type">
         <option value="rectangles" selected>Rectangles</option>
         <option value="circles">Circles</option>
@@ -123,6 +129,7 @@
       <button id="clear-image" disabled>Clear Image</button>
       <p id="save-inst">Right click --> "Save As Image"</p>
       <img src="" alt="" id="the-image" />
+      <!-- <canvas width="360" height="640" id="canvas"></canvas> -->
       <canvas width="1920" height="1080" id="canvas"></canvas>
       <!-- <canvas width="1280" height="720" id="canvas"></canvas> -->
     </div>
