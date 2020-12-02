@@ -2,20 +2,24 @@ $expand-width: 50px
 
 .expand-menu-btn
     position: absolute
+    z-index: 1
     min-height: 50px
     max-height: 200px
     height: 60px
     width: $expand-width
+    right: 0
     top: 0
-    left: -$expand-width
     border-top-left-radius: 30px
     border-bottom-left-radius: 30px
     background: var(--accent)
     cursor: pointer
     display: grid
     place-items: center
+    transition: right .25s ease-out
     &:hover
         background-image: linear-gradient(rgba(0,0,0,.1),rgba(0,0,0,.1))
+    &--expanded
+        right: 370px
     &__triangle
         background: var(--primary)
         height: 25px
@@ -36,6 +40,7 @@ $expand-width: 50px
     position: fixed
     top: 0
     right: 0
+    overflow-x: auto
     box-shadow: -5px 0 15px rgba(0, 0, 0, .15)
     transition: right .25s ease-out
     &__tabs

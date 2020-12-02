@@ -1,6 +1,7 @@
 isValidHexColor = (color) -> return /^#(?:[0-9a-fA-F]{3}){1,2}$/.test(color) 
 
 $(".expand-menu-btn:first").click(() ->
+    $(".expand-menu-btn:first").toggleClass("expand-menu-btn--expanded")
     $(".expand-menu-btn__triangle:first").toggleClass("expand-menu-btn__triangle--expanded")
     $(".menu:first").toggleClass("menu--hidden")
 )

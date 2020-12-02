@@ -7,6 +7,7 @@
   };
 
   $(".expand-menu-btn:first").click(function() {
+    $(".expand-menu-btn:first").toggleClass("expand-menu-btn--expanded");
     $(".expand-menu-btn__triangle:first").toggleClass("expand-menu-btn__triangle--expanded");
     return $(".menu:first").toggleClass("menu--hidden");
   });
