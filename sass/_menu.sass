@@ -1,0 +1,158 @@
+$expand-width: 50px
+
+.expand-menu-btn
+    position: absolute
+    min-height: 50px
+    max-height: 200px
+    height: 60px
+    width: $expand-width
+    top: 0
+    left: -$expand-width
+    border-top-left-radius: 30px
+    border-bottom-left-radius: 30px
+    background: var(--accent)
+    cursor: pointer
+    display: grid
+    place-items: center
+    &:hover
+        background-image: linear-gradient(rgba(0,0,0,.1),rgba(0,0,0,.1))
+    &__triangle
+        background: var(--primary)
+        height: 25px
+        width: 20px
+        position: relative
+        left: 5px
+        clip-path: polygon(100% 0, 0 50%, 100% 100%)
+        &--expanded
+            clip-path: polygon(0 0, 100% 50%, 0 100%)
+
+.menu
+    position: relative
+    max-width: 370px
+    min-width: 370px
+    min-height: 100%
+    max-height: 100%
+    background: var(--primary)
+    position: absolute
+    top: 0
+    right: 0
+    box-shadow: -5px 0 15px rgba(0, 0, 0, .25)
+    &__tabs
+        display: flex
+        flex-direction: row
+    &__contents
+        height: 100%
+        overflow-y: auto
+        background: var(--primary)
+
+.menu__tab
+    flex-basis: 100%
+    min-height: 48px
+    max-height: 48px
+    border-bottom: 2px solid var(--bgr)
+    display: grid
+    place-items: center
+    cursor: pointer
+    &:hover
+        background: rgba(0,0,0,.05)
+    &--selected
+        border-color: var(--accent)
+        color: var(--accent)
+
+.content-item
+    display: flex
+    flex-direction: column
+
+.content-dropdown-toggle
+    width: 100%
+    display: flex
+    flex-direction: row
+    align-items: center
+    background: rgba(0,0,0,.07)
+    border-bottom: thin solid rgba(0,0,0,.25)
+    padding: 13px 10px
+    font-weight: 500
+    cursor: pointer
+    user-select: none
+    overflow: hidden
+    $icon-size: 1.4rem
+    &:hover
+        background: rgba(0,0,0,.12)
+    &__icon
+        height: $icon-size
+        width: $icon-size
+        *
+            height: $icon-size
+            width: $icon-size
+
+    &__title
+        margin-left: 10px
+        font-size: 1.4rem
+        font-family: var(--font-primary)
+        font-weight: 400
+        position: relative
+        top: 1px
+
+    &__chevron
+        margin-left: auto
+
+.menu-content
+    display: flex
+    flex-direction: column
+    width: 100%
+    padding: 15px 20px
+
+// ---------
+
+details[open] .content-dropdown-toggle__chevron
+    transform: rotate(90deg)
+
+.resolution-pickers
+    display: flex
+    flex-direction: row
+    align-items: flex-end
+    p
+        font-family: var(--font-primary)
+        display: inline
+        padding: 0 35px
+        font-size: 1.6rem
+        position: relative
+        bottom: 5px
+
+.main-colors
+    li + li
+        margin-top: 15px
+
+.color-item
+    display: flex
+    flex-direction: row
+    align-items: center
+    input
+        min-width: 150px
+
+.remove-color
+    color: #f13535
+    position: relative
+    margin-left: 10px
+    top: 9px
+    width: 40px
+    height: 40px
+    cursor: pointer
+
+$preview-size: 55px
+.color-preview
+    position: relative
+    top: 9px
+    margin-left: auto
+    margin-right: 15px
+    border: medium solid black
+    border-radius: 50%
+    width: $preview-size
+    height: $preview-size
+
+.shapes-menu
+    li + li
+        margin-top: 15px
+
+.n-of-shapes
+    width: 100%

@@ -4,13 +4,21 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Static Template</title>
+    <title>Minimalistic Wallpaper Generator</title>
     <link rel="stylesheet" href="./styles.css" />
-    <script src="./vendors/jquery.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;600&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <div class="wrapper">
-      <label
+      <!-- <label
         >Background:
         <input
           id="bg-color-input"
@@ -127,12 +135,217 @@
       <button id="generate-new">Generate new</button>
       <button id="to-image">Save as Image</button>
       <button id="clear-image" disabled>Clear Image</button>
-      <p id="save-inst">Right click --> "Save As Image"</p>
-      <img src="" alt="" id="the-image" />
+      <p id="save-inst">Right click -> "Save As Image"</p>
+      <img src="" alt="" id="the-image" /> -->
+
+      <!-- Canvas -->
+
       <!-- <canvas width="360" height="640" id="canvas"></canvas> -->
-      <canvas width="1920" height="1080" id="canvas"></canvas>
+      <!-- <canvas width="1920" height="1080" id="canvas"></canvas> -->
       <!-- <canvas width="1280" height="720" id="canvas"></canvas> -->
     </div>
-    <script type="module" src="./js/script.js"></script>
+
+    <!-- Menu -->
+
+    <div class="menu">
+      <div class="expand-menu-btn">
+        <div
+          class="expand-menu-btn__triangle expand-menu-btn__triangle--expanded"
+        ></div>
+      </div>
+      <ul class="menu__tabs">
+        <li class="menu__tab menu__tab--selected">
+          <i data-feather="sliders"></i>
+        </li>
+        <li class="menu__tab">
+          <i data-feather="globe"></i>
+        </li>
+      </ul>
+      <ul class="menu__contents">
+        <li class="content-item">
+          <details open>
+            <summary class="content-dropdown-toggle">
+              <div class="content-dropdown-toggle__icon">
+                <i data-feather="maximize-2"></i>
+              </div>
+              <div class="content-dropdown-toggle__title">Resolution</div>
+              <i
+                class="content-dropdown-toggle__chevron"
+                data-feather="chevron-right"
+              ></i>
+            </summary>
+            <div class="menu-content">
+              <div class="resolution-pickers">
+                <label class="label">
+                  <input
+                    class="input"
+                    id="width-picker"
+                    size="8"
+                    type="number"
+                    placeholder="1920"
+                  />
+                  width
+                </label>
+                <p>x</p>
+                <label class="label">
+                  <input
+                    class="input"
+                    id="height-picker"
+                    size="8"
+                    type="number"
+                    placeholder="1080"
+                  />
+                  height
+                </label>
+              </div>
+            </div>
+          </details>
+        </li>
+
+        <li class="content-item">
+          <details open>
+            <summary>
+              <div class="content-dropdown-toggle">
+                <div class="content-dropdown-toggle__icon">
+                  <i data-feather="edit"></i>
+                </div>
+                <div class="content-dropdown-toggle__title">Palette</div>
+                <i
+                  class="content-dropdown-toggle__chevron"
+                  data-feather="chevron-right"
+                ></i>
+              </div>
+            </summary>
+            <div class="menu-content">
+              <ul class="main-colors">
+                <li
+                  class="color-item"
+                  data-color-number="1"
+                  data-color-type="main-palette"
+                >
+                  <label class="label">
+                    <input
+                      class="input"
+                      id="height-picker"
+                      size="8"
+                      type="text"
+                      placeholder="e.g: 222831"
+                      value="222831"
+                    />
+                    Background Color
+                  </label>
+                  <div style="background: #222831" class="color-preview"></div>
+                </li>
+                <li
+                  class="color-item"
+                  data-color-number="1"
+                  data-color-type="main-palette"
+                >
+                  <label class="label">
+                    <input
+                      class="input"
+                      id="height-picker"
+                      size="8"
+                      type="text"
+                      placeholder="e.g: e8e8e8"
+                      value="e8e8e8"
+                    />
+                    Color #1
+                  </label>
+                  <div style="background: #e8e8e8" class="color-preview"></div>
+                </li>
+                <li
+                  class="color-item"
+                  data-color-number="1"
+                  data-color-type="main-palette"
+                >
+                  <label class="label">
+                    <input
+                      class="input"
+                      id="height-picker"
+                      size="8"
+                      type="text"
+                      placeholder="e.g: f05454"
+                      value="f05454"
+                    />
+                    Color #2
+                  </label>
+                  <i data-feather="x-circle" class="remove-color">X</i>
+                  <div style="background: #f05454" class="color-preview"></div>
+                </li>
+                <li
+                  class="color-item"
+                  data-color-number="1"
+                  data-color-type="main-palette"
+                >
+                  <label class="label">
+                    <input
+                      class="input"
+                      id="height-picker"
+                      size="8"
+                      type="text"
+                      placeholder="e.g: 222831"
+                      value="222831"
+                    />
+                    Color #3
+                  </label>
+                  <i data-feather="x-circle" class="remove-color">X</i>
+                  <div class="color-preview"></div>
+                </li>
+              </ul>
+            </div>
+          </details>
+        </li>
+
+        <li class="content-item">
+          <details open>
+            <summary>
+              <div class="content-dropdown-toggle">
+                <div class="content-dropdown-toggle__icon">
+                  <i data-feather="triangle"></i>
+                </div>
+                <div class="content-dropdown-toggle__title">Shapes</div>
+                <i
+                  class="content-dropdown-toggle__chevron"
+                  data-feather="chevron-right"
+                ></i>
+              </div>
+            </summary>
+            <div class="menu-content">
+              <ul class="shapes-menu">
+                <li class="shapes-menu__item">
+                  <div class="n-of-shapes">
+                    <label class="label">
+                      <input class="input" type="number" value="3" />
+                      Number of Shapes
+                    </label>
+                  </div>
+                </li>
+                <li class="shapes-menu__item">
+                  <div class="n-of-shapes">
+                    <label class="label">
+                      <select class="input" type="number" value="3">
+                        <option value="rectangles" selected>Rectangles</option>
+                        <option value="circles" selected>Circles</option>
+                      </select>
+                      Number of Shapes
+                    </label>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </details>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Scripts -->
+
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script>
+      feather.replace();
+    </script>
+    <!-- <script src="./vendors/jquery.js"></script> -->
+    <!-- <script type="module" src="./js/script.js"></script> -->
   </body>
 </html>
