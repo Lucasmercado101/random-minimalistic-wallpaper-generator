@@ -30,14 +30,14 @@
     </div>
     <div class="menu menu--hidden">
       <ul class="menu__tabs">
-        <li class="menu__tab menu__tab--selected">
+        <li id="main-settings-tab" class="menu__tab menu__tab--selected">
           <i data-feather="sliders"></i>
         </li>
-        <li class="menu__tab">
+        <li id="site-settings-tab" class="menu__tab">
           <i data-feather="globe"></i>
         </li>
       </ul>
-      <form action="">
+      <form id="main-settings-menu-content" action="">
         <ul class="menu__contents">
           <li class="content-item">
             <details open>
@@ -245,9 +245,118 @@
                           <option value="rectangles">Rectangles</option>
                           <option value="circles" selected>Circles</option>
                         </select>
-                        Number of Shapes
+                        Type of Shapes
                       </label>
                     </div>
+                  </li>
+                </ul>
+              </div>
+            </details>
+          </li>
+        </ul>
+      </form>
+
+      <form id="site-settings-menu-content" action="">
+        <ul class="menu__contents">
+          <li class="content-item">
+            <ul>
+              <li class="menu-content">
+                <div id="menu-placement-option">
+                  <p>Menu Placement:</p>
+                  <select
+                    class="input"
+                    name="menu-placement"
+                    id="menu-placement"
+                  >
+                    <option value="right" selected>right</option>
+                    <option value="left">left</option>
+                  </select>
+                </div>
+              </li>
+            </ul>
+          </li>
+
+          <li class="content-item">
+            <details open>
+              <summary>
+                <div class="content-dropdown-toggle">
+                  <div class="content-dropdown-toggle__icon">
+                    <i data-feather="edit"></i>
+                  </div>
+                  <div class="content-dropdown-toggle__title">Site Palette</div>
+                  <i
+                    class="content-dropdown-toggle__chevron"
+                    data-feather="chevron-right"
+                  ></i>
+                </div>
+              </summary>
+              <div class="menu-content">
+                <ul class="site-colors">
+                  <li
+                    class="color-item"
+                    data-color-number="0"
+                    data-color-type="sitePalette"
+                  >
+                    <label class="label">
+                      <input
+                        class="input color-input"
+                        size="8"
+                        type="text"
+                        maxlength="6"
+                        placeholder="e.g: 2B2C28"
+                        pattern="([0-9a-fA-F]{3}){1,2}$"
+                        value="2B2C28"
+                      />
+                      Background Color
+                    </label>
+                    <div
+                      style="background: #2b2c28"
+                      class="color-preview"
+                    ></div>
+                  </li>
+                  <li
+                    class="color-item"
+                    data-color-number="1"
+                    data-color-type="sitePalette"
+                  >
+                    <label class="label">
+                      <input
+                        class="input color-input"
+                        size="8"
+                        type="text"
+                        maxlength="6"
+                        placeholder="e.g: FFFAFB"
+                        pattern="([0-9a-fA-F]{3}){1,2}$"
+                        value="FFFAFB"
+                      />
+                      Primary
+                    </label>
+                    <div
+                      style="background: #fffafb"
+                      class="color-preview"
+                    ></div>
+                  </li>
+                  <li
+                    class="color-item"
+                    data-color-number="2"
+                    data-color-type="sitePalette"
+                  >
+                    <label class="label">
+                      <input
+                        class="input color-input"
+                        size="8"
+                        type="text"
+                        maxlength="6"
+                        placeholder="e.g: 339989"
+                        pattern="([0-9a-fA-F]{3}){1,2}$"
+                        value="339989"
+                      />
+                      Accent
+                    </label>
+                    <div
+                      style="background: #339989"
+                      class="color-preview"
+                    ></div>
                   </li>
                 </ul>
               </div>

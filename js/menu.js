@@ -7,29 +7,68 @@
   };
 
   $(".expand-menu-btn:first").click(function() {
-    $(".expand-menu-btn:first").toggleClass("expand-menu-btn--expanded");
-    $(".expand-menu-btn__triangle:first").toggleClass("expand-menu-btn__triangle--expanded");
-    return $(".menu:first").toggleClass("menu--hidden");
+    var placement;
+    placement = window.siteSettings.menuPlacement;
+    if (placement === "right") {
+      $(".expand-menu-btn:first").toggleClass("expand-menu-btn--expanded");
+      $(".expand-menu-btn__triangle:first").toggleClass("expand-menu-btn__triangle--expanded");
+      $(".menu:first").toggleClass("menu--hidden");
+    }
+    if (placement === "left") {
+      $(".expand-menu-btn:first").toggleClass("expand-menu-btn--expanded-left");
+      $(".expand-menu-btn__triangle:first").toggleClass("expand-menu-btn__triangle--expanded-left");
+      return $(".menu:first").toggleClass("menu--left-hidden");
+    }
   });
 
+  $("#main-settings-tab").click(function() {
+    $("#site-settings-tab").removeClass("menu__tab--selected");
+    $(this).addClass("menu__tab--selected");
+    $("#site-settings-menu-content").hide();
+    return $("#main-settings-menu-content").show();
+  });
+
+  $("#site-settings-tab").click(function() {
+    $("#main-settings-tab").removeClass("menu__tab--selected");
+    $(this).addClass("menu__tab--selected");
+    $("#main-settings-menu-content").hide();
+    return $("#site-settings-menu-content").show();
+  });
+
+  $(".color-input").on("input", function() {
+    var color, colorHex, colorType, li, num, root, type;
+    colorHex = "#" + $(this).val();
+    if (isValidHexColor(colorHex)) {
+      li = $(this).parents('.color-item').first();
+      num = li.attr("data-color-number");
+      type = li.attr("data-color-type");
+      colorType = "color" + num;
+      window.siteSettings[type][colorType] = colorHex;
+      $(li).find(".color-preview").css("background", colorHex);
+      if (type === "sitePalette") {
+        root = document.querySelector(':root');
+        switch (colorType) {
+          case "color0":
+            color = "bgr";
+            break;
+          case "color1":
+            color = "primary";
+            break;
+          case "color2":
+            color = "accent";
+        }
+        return root.style.setProperty("--" + color, colorHex);
+      }
+    }
+  });
+
+  // ---------------- main settings ----------------
   $("#width-picker").on("input", function() {
     return window.siteSettings.resolution["width"] = $(this).val();
   });
 
   $("#height-picker").on("input", function() {
     return window.siteSettings.resolution["height"] = $(this).val();
-  });
-
-  $(".color-input").on("input", function() {
-    var color, li, num, type;
-    color = "#" + $(this).val();
-    if (isValidHexColor(color)) {
-      li = $(this).parents('.color-item').first();
-      num = li.attr("data-color-number");
-      type = li.attr("data-color-type");
-      window.siteSettings[type]["color" + num] = color;
-      return $(li).find(".color-preview").css("background", color);
-    }
   });
 
   $("#amount-of-shapes").on("input", function() {
@@ -43,6 +82,25 @@
 
   $("#shapes-type").change(function() {
     return window.siteSettings.shapes.type = $("#shapes-type option:selected").text().toLowerCase();
+  });
+
+  // --------- site settings ---------------
+  $("#menu-placement").change(function() {
+    var placement;
+    placement = $("#menu-placement option:selected").text().toLowerCase();
+    window.siteSettings.menuPlacement = placement;
+    if (placement === "left") {
+      $(".expand-menu-btn:first").addClass("expand-menu-btn--left");
+      $(".expand-menu-btn:first").addClass("expand-menu-btn--expanded-left");
+      $(".expand-menu-btn__triangle:first").addClass("expand-menu-btn__triangle--left");
+      $(".menu:first").addClass("menu--left");
+    }
+    if (placement === "right") {
+      $(".expand-menu-btn:first").removeClass("expand-menu-btn--expanded-left");
+      $(".expand-menu-btn:first").removeClass("expand-menu-btn--left");
+      $(".expand-menu-btn__triangle:first").removeClass("expand-menu-btn__triangle--left");
+      return $(".menu:first").removeClass("menu--left");
+    }
   });
 
 }).call(this);

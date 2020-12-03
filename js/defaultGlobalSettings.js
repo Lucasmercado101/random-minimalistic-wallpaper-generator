@@ -10,10 +10,14 @@ export default {
     "color2": "#f05454",
     "color3": "#30475e"
   },
+  "sitePalette": {
+    "color0": "#2B2C28",
+    "color1": "#FFFAFB",
+    "color2": "#339989"
+  },
+  "menuPlacement": "right",
   "shapes": {
     "amount": "3",
     "type": "circles"
   }
 };
-
-//TODO: write it as an object with getters and setters?
