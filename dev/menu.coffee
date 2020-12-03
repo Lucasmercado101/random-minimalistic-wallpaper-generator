@@ -1,5 +1,6 @@
 isValidHexColor = (color) -> return /^#(?:[0-9a-fA-F]{3}){1,2}$/.test(color) 
 
+colorNumberIndex = 3
 
 $(".expand-menu-btn:first").click(() ->
     placement = window.siteSettings.menuPlacement
@@ -56,11 +57,69 @@ $("#height-picker").on("input", () ->
     window.siteSettings.resolution["height"] = $(@).val()
 )
 
+$(".remove-color").click(() -> 
+    li = $(@).parents('.color-item').first()
+    num = li.attr("data-color-number")
+    type = li.attr("data-color-type")
+    colorType = "color" + num
+    delete window.siteSettings[type][colorType]
+    li.remove()
+)
 
 $("#amount-of-shapes").on("input", () ->
     amount = $(@).val()
     isNumber = !isNaN(amount)
     if isNumber then window.siteSettings.shapes.amount = amount
+)
+
+$("#add-main-palette-color").click((e) -> 
+    e.preventDefault()
+    colorNumberIndex++
+    window.siteSettings["mainPalette"]["color" + colorNumberIndex] = "#30475e"
+    li = '<li class="color-item"  data-color-number=' + colorNumberIndex + ' data-color-type="mainPalette" > </li>'
+
+    xIcon = '<div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle remove-color"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg></div>'
+
+    label = '<label class="label">
+            <input
+            class="input color-input"
+            size="8"
+            type="text"
+            maxlength="6"
+            placeholder="e.g: 30475e"
+            pattern="([0-9a-fA-F]{3}){1,2}$"
+            value="30475e"
+            />
+            Color
+        </label>'
+    
+    preview = '<div
+            style="background: #30475e"
+            class="color-preview"
+        ></div>'
+    $(li).append($(label)).append($(xIcon)).append($(preview)).insertBefore($("#new-color-btn"))
+
+    selector = ".color-item[data-color-number='" +  colorNumberIndex + "']"
+
+    $("#{selector} input:first").on("input", () ->
+        colorHex = "#" + $(@).val()
+        if isValidHexColor(colorHex) 
+            li = $(@).parents('.color-item').first()
+            num = li.attr("data-color-number")
+            type = li.attr("data-color-type")
+            colorType = "color" + num
+            window.siteSettings[type][colorType] = colorHex;
+            $(li).find(".color-preview").css("background", colorHex)
+    )
+
+    $("#{selector} .remove-color:first").click(() -> 
+        li = $(@).parents('.color-item').first()
+        num = li.attr("data-color-number")
+        type = li.attr("data-color-type")
+        colorType = "color" + num
+        delete window.siteSettings[type][colorType]
+        li.remove()
+    )
 )
 
 $("#shapes-type").change(() ->

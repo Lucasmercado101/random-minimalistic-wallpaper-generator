@@ -19,7 +19,7 @@
   <body>
     <div class="wrapper">
       <button id="generate-new">Generate new</button>
-      <p id="save-text">Right click -> "Save As Image"</p>
+      <p id="save-text">Right click &#8594; "Save As Image"</p>
       <canvas width="1920" height="1080" id="canvas"></canvas>
     </div>
 
@@ -140,7 +140,7 @@
                         pattern="([0-9a-fA-F]{3}){1,2}$"
                         value="e8e8e8"
                       />
-                      Color #1
+                      Color
                     </label>
                     <div
                       style="background: #e8e8e8"
@@ -162,7 +162,7 @@
                         pattern="([0-9a-fA-F]{3}){1,2}$"
                         value="f05454"
                       />
-                      Color #2
+                      Color
                     </label>
                     <i data-feather="x-circle" class="remove-color">X</i>
                     <div
@@ -185,13 +185,16 @@
                         pattern="([0-9a-fA-F]{3}){1,2}$"
                         value="30475e"
                       />
-                      Color #3
+                      Color
                     </label>
                     <i data-feather="x-circle" class="remove-color">X</i>
                     <div
                       style="background: #30475e"
                       class="color-preview"
                     ></div>
+                  </li>
+                  <li id="new-color-btn">
+                    <button id="add-main-palette-color">Add Color</button>
                   </li>
                 </ul>
               </div>

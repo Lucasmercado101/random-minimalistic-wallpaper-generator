@@ -59,10 +59,8 @@ window.addEventListener("keypress", (ev) ->
 $("#generate-new").click(generate)
 
 # TODO: 
-#  - find a way to save canvas to image format directly
 #  - manually change the variation in size of shapes
 #  - Fit the whole canvas without overflow
 #  - fix the % chance of each shape being generated
-#  - add and remove colors
 
 generate() 
